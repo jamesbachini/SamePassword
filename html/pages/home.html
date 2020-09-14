@@ -1,0 +1,143 @@
+<style>
+	section {
+		border-bottom: 2px solid #EEE;
+	}
+	
+	h1 {
+		font-weight: 900;
+		font-size: 18px;
+	}
+
+	#generator-container {
+		width: 300px;
+		margin: 5px auto;
+		border: 1px solid #CCC;
+		border-radius: 3px;
+		padding: 15px;
+	}
+
+	#output-container {
+		margin-top: 10px;
+	}
+
+	#output {
+		width: 250px;
+		display: inline-block;
+		height: 20px;
+		background: #EEE;
+		padding: 2px;
+		text-align: center;
+		border-radius: 3px;
+	}
+
+	.inline-icon {
+		height: 18px;
+		opacity: 0.5;
+		cursor: pointer;
+		margin-bottom: 3px;
+	}
+	
+	.save-icon {
+		height: 18px;
+		opacity: 0.5;
+		cursor: pointer;
+		margin-bottom: -3px;
+	}
+
+	@media only screen and (max-width: 720px) {
+	
+	}
+
+</style>
+
+<section id="introduction">
+	<div class="container">
+		<div class="value-proposition">
+			<h1 class="text-center">
+				PASSWORD GENERATOR
+			</h1>
+		</div>
+		<div id="generator-container">
+			<div>
+				<span class="text-small">EMAIL:</span><br>
+				<input type="text" id="email" placeholder="your@email.com" />
+				<input type="checkbox" id="save-email" value="1" />
+				<label for="save-email"><img src="img/icons/save.svg" class="save-icon" /></label>
+			</div>
+			<div>
+				<span class="text-small">PASSWORD:</span><br>
+				<input type="text" id="pass" placeholder="Password" />
+				<input type="checkbox" id="save-pass" value="1" />
+				<label for="save-pass"><img src="img/icons/save.svg" class="save-icon" /></label>
+			</div>
+			<div>
+				<span class="text-small">DOMAIN:</span><br>
+				<input type="text" id="domain" placeholder="example.com" />
+			</div>
+			<div id="output-container">
+				<span id="output"></span>
+				<img src="img/icons/copy.svg" class="inline-icon" id="copy-icon" />
+			</div>
+		</div>
+	</div>
+</section>
+
+
+<script>
+	document.getElementById('copy-icon').onclick = () => {
+		utils.copyToClipboard('output');
+	};
+
+	const hash = async (message) => {
+  	const msgUint8 = new TextEncoder().encode(message);
+  	const hashBuffer = await crypto.subtle.digest('SHA-256', msgUint8);
+  	const hashArray = Array.from(new Uint8Array(hashBuffer));
+  	const hash = hashArray.map(b => b.toString(36).padStart(2, '0')).join('');
+  	return hash;
+	}
+
+	const createPass = (long) => {
+		const base64Long = btoa(long);
+		let finalPass = [];
+		lastLetter = false;
+		let containsSymbol = false;
+		[...base64Long].forEach((char) => {
+			if (!lastLetter) {
+				lastLetter = char;
+				return false;
+			}
+			const lastRef = parseInt(char);
+			if (isNaN(lastRef) || containsSymbol) {
+				finalPass += char;
+			} else {
+				const symbols = ['!','$','@','#','%','&','(',')','+','*'];
+				finalPass += symbols[lastRef];
+				containsSymbol = true;
+			}
+			lastLetter = false;
+		})
+		return finalPass.substr(0,12);
+	}
+
+	let email = false;
+	let pass = false;
+	let domain = false;
+	
+	setInterval(async () => {
+		const rawEmail = document.getElementById('email').value;
+		const rawPass = document.getElementById('pass').value;
+		const rawDomain = document.getElementById('domain').value;
+		if (email === rawEmail && pass === rawPass && domain === rawDomain) {
+			return false;
+		}
+		const seed = 'samepassword.com'
+		email = rawEmail;
+		pass = rawPass;
+		domain = rawDomain;
+		const unique = String(seed+email+pass+domain);
+		const digest = await hash(unique);
+		const final = createPass(digest);
+		document.getElementById('output').innerHTML = final;
+
+	},1000);
+</script>
