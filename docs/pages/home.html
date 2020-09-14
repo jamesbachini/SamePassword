@@ -1,11 +1,20 @@
 <style>
 	section {
+		background: #F7F7F7;
 		border-bottom: 2px solid #EEE;
 	}
 	
+	.section-alt {
+		background: #F3F3F3;
+	}
+
 	h1 {
 		font-weight: 900;
 		font-size: 18px;
+	}
+
+	.yellow {
+		color: #f8d432;
 	}
 
 	#generator-container {
@@ -14,6 +23,13 @@
 		border: 1px solid #CCC;
 		border-radius: 3px;
 		padding: 15px;
+		background: #FFF;
+		box-shadow: 0 0 5px #AAA;
+		-webkit-box-shadow: 0 0 5px #AAA;
+		-moz-box-shadow: 0 0 5px #AAA;
+		box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		-webkit-box-sizing: border-box;
 	}
 
 	#output-container {
@@ -21,20 +37,26 @@
 	}
 
 	#output {
-		width: 250px;
+		width: 220px;
 		display: inline-block;
-		height: 20px;
+		height: 26px;
 		background: #EEE;
 		padding: 2px;
+		font-size: 20px;
 		text-align: center;
 		border-radius: 3px;
 	}
 
-	.inline-icon {
-		height: 18px;
+	#email, #pass {
+		width: 190px;
+	}
+
+	.copy-icon {
+		height: 30px;
 		opacity: 0.5;
 		cursor: pointer;
-		margin-bottom: 3px;
+		margin-bottom: -5px;
+		margin-left: 5px;
 	}
 	
 	.save-icon {
@@ -44,13 +66,38 @@
 		margin-bottom: -3px;
 	}
 
+	.green-icon {
+		color: #2b9e31;
+		filter: invert(45%) sepia(75%) saturate(484%) hue-rotate(74deg) brightness(94%) contrast(90%);
+	}
+
+	.share-button {
+		width: 80px;
+		display: inline-block;
+		cursor: pointer;
+		opacity: 0.3;
+	}
+
+	.additional-checkboxes {
+		margin-top: 10px;
+	}
+
+	.small-image {
+		max-width: 300px;
+	}
+
+	.brand-name {
+		font-weight: bold;
+		font-size: 0.8em;
+	}
+
 	@media only screen and (max-width: 720px) {
 	
 	}
 
 </style>
 
-<section id="introduction">
+<section id="generator">
 	<div class="container">
 		<div class="value-proposition">
 			<h1 class="text-center">
@@ -66,7 +113,7 @@
 			</div>
 			<div>
 				<span class="text-small">PASSWORD:</span><br>
-				<input type="text" id="pass" placeholder="Password" />
+				<input type="password" id="pass" placeholder="Password" />
 				<input type="checkbox" id="save-pass" value="1" />
 				<label for="save-pass"><img src="img/icons/save.svg" class="save-icon" /></label>
 			</div>
@@ -76,9 +123,46 @@
 			</div>
 			<div id="output-container">
 				<span id="output"></span>
-				<img src="img/icons/copy.svg" class="inline-icon" id="copy-icon" />
+				<img src="img/icons/copy.svg" class="copy-icon" id="copy-icon" />
+			</div>
+			<div class="text-center additional-checkboxes">
+				<input type="checkbox" id="make-random" value="1" />
+				<label for="make-random" class="text-small">Random</label>
+				<input type="checkbox" id="remove-symbols" value="1" />
+				<label for="remove-symbols" class="text-small">No Symbols</label>
 			</div>
 		</div>
+	</div>
+</section>
+
+<section id="share" class="section-alt">
+	<div class="container text-center">
+		<h3>Friends don't let friends use the same password</h3>
+		<div>
+			<div class="share-button" data-network="twitter"><img src="img/icons/twitter.svg" class="share-button-icon" /></div>
+			<div class="share-button" data-network="facebook"><img src="img/icons/facebook.svg" class="share-button-icon" /></div>
+			<div class="share-button" data-network="whatsapp"><img src="img/icons/whatsapp.svg" class="share-button-icon" /></div>
+		</div>
+		<div>Share this tool and help secure the web.</div>
+	</div>
+</section>
+
+<section id="explainer">
+	<div class="container">
+		<h3>Stronger Password Security</h3>
+		<p>A recent survey found that 53% of people use the same password for multiple accounts.</p>
+		<p>The issue is that when one account inevitable gets comprimised the attacker has access to all the other accounts that person has. To make things worse some of the biggest sites on the web have had data breaches meaning that millions of email:password combinations are already in the public domain.</p>
+		<img src="img/laptop.png" class="responsive-width small-image pull-left" />
+		<p><span class="brand-name">SAME<span class="yellow">PASSWORD</span></span> fixes this by creating a unique password for every website you create an account for. Simply visit this site and enter your email, a pass phrase and the domain name of the site you are setting up an account on. A unique, secure password will be created.</p>
+		<p>At any time in the future you can return to this site and enter the same details to retrieve your password.</p>
+		<p>Passwords are calculated in the browser and are never sent to or stored on the webserver. The code for this website is open-source and the site itself is hosted on <a href="https://github.com/jamesbachini/SamePassword">Github</a>.</p>
+		<img src="img/mobile.png" class="responsive-width small-image pull-right" />
+		<p>The email field can contain either a username or email address. This in theory should match the account username or password but it can be any alphanumeric phrase</p>
+		<p>The password field should contain a unique pass phrase that you can remember. This could be a common password alongside a pin number for example. The longer the better and don't use "password".</p>
+		<p>The domain field is for the domain name of the site you are registering with.</p>
+		<p>The "save" tickboxes will save your email and password in the browser so you only need to fill them in once. Don't use this on a shared machine.</p>
+		<p>The "Random" tickbox will generate a one off completely random password. This is non-recoverable as it contains random data in the algorithm.</p>
+		<p>The "No Symbols" tickbox will generate a alphanumeric password with no symbols in it.</p>
 	</div>
 </section>
 
@@ -86,7 +170,21 @@
 <script>
 	document.getElementById('copy-icon').onclick = () => {
 		utils.copyToClipboard('output');
+		document.getElementById('copy-icon').classList.add('green-icon');
+		setTimeout(() => {
+			document.getElementById('copy-icon').classList.remove('green-icon');
+		}, 3000);
 	};
+	document.querySelectorAll('.share-button').forEach((el) => {
+		el.onclick = () => {
+			const homeLink = 'https://samepassword.com';
+			let shareLink;
+			if (el.dataset.network === 'twitter') shareLink = `https://twitter.com/share?text=Never%20use%20the%20same%20password%20for%20all%20your%20accounts&url=${homeLink}&hashtags=Password,SamePassword,Security`;
+			if (el.dataset.network === 'facebook') shareLink = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(homeLink)}`;
+			if (el.dataset.network === 'whatsapp') shareLink = `https://wa.me/?text=${encodeURIComponent(homeLink)}`;
+			window.open(shareLink);
+		};
+	});
 
 	const hash = async (message) => {
   	const msgUint8 = new TextEncoder().encode(message);
@@ -102,6 +200,8 @@
 		lastLetter = false;
 		let containsSymbol = false;
 		[...base64Long].forEach((char) => {
+			if (char === '+') char = 0;
+			if (char === '/') char = 1;
 			if (!lastLetter) {
 				lastLetter = char;
 				return false;
@@ -119,24 +219,60 @@
 		return finalPass.substr(0,12);
 	}
 
+	if (typeof localStorage !== 'undefined') {
+		if (localStorage.email) {
+			document.getElementById('email').value = localStorage.email;
+			document.getElementById('save-email').checked = true;
+		}
+		if (localStorage.pass) {
+			document.getElementById('pass').value = localStorage.pass;
+			document.getElementById('save-pass').checked = true;
+		}
+	}
+
 	let email = false;
 	let pass = false;
 	let domain = false;
+	let random = false;
+	let noSymbols = false;
 	
 	setInterval(async () => {
 		const rawEmail = document.getElementById('email').value;
 		const rawPass = document.getElementById('pass').value;
 		const rawDomain = document.getElementById('domain').value;
-		if (email === rawEmail && pass === rawPass && domain === rawDomain) {
+		const rawRandom = document.getElementById('make-random').checked;
+		const rawNoSymbols = document.getElementById('remove-symbols').checked;
+		if (document.getElementById('save-email').checked) {
+			localStorage.setItem('email', rawEmail);
+		} else if (localStorage.email) {
+			localStorage.removeItem('email');
+		}
+		if (document.getElementById('save-pass').checked) {
+			localStorage.setItem('pass', rawPass);
+		} else if (localStorage.pass) {
+			localStorage.removeItem('pass');
+		}
+		if (email === rawEmail && pass === rawPass && domain === rawDomain && random === rawRandom && noSymbols === rawNoSymbols) {
 			return false;
 		}
 		const seed = 'samepassword.com'
 		email = rawEmail;
 		pass = rawPass;
 		domain = rawDomain;
-		const unique = String(seed+email+pass+domain);
+		random = rawRandom;
+		noSymbols = rawNoSymbols
+		let unique = String(seed+email+pass+domain);
+		if (document.getElementById('make-random').checked) {
+			unique += Math.random();
+			unique += Math.random();
+			unique += Math.random();
+		}
 		const digest = await hash(unique);
-		const final = createPass(digest);
+		let final = createPass(digest);
+		if (final === 'DxjkHxj!z0jp') final = '&nbsp;';
+		if (document.getElementById('remove-symbols').checked) {
+			final = final.split(/[^a-zA-Z0-9]/).join('');
+		}
 		document.getElementById('output').innerHTML = final;
 
 	},1000);
