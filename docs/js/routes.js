@@ -29,8 +29,8 @@ export const routes = {
 		} else {
 			// load home page if no page= variable specified in URL
 			await utils.loadModule('pages/home.html','content');
-			utils.setTitle(`${vSettings.brand}`);
-			utils.setDescription(`VanillaHTML is the best boilerplate template for websites and web development projects in ${new Date().getFullYear()}. Built with elegantly simple HTML/CSS/JS`);
+			utils.setTitle(`SamePassword | Simple Free Password Generator`);
+			utils.setDescription(`Noone should use the same password for all their web accounts. Use this simple free password generator to secure your logins`);
 		}
 		utils.scrollTo();
 		return true;

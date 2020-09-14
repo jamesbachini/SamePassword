@@ -19,14 +19,13 @@
 
 	#generator-container {
 		width: 300px;
-		margin: 5px auto;
-		border: 1px solid #CCC;
+		margin: 5px auto 30px auto;
 		border-radius: 3px;
 		padding: 15px;
 		background: #FFF;
-		box-shadow: 0 0 5px #AAA;
-		-webkit-box-shadow: 0 0 5px #AAA;
-		-moz-box-shadow: 0 0 5px #AAA;
+		box-shadow: 0 0 5px #CCC;
+		-webkit-box-shadow: 0 0 5px #CCC;
+		-moz-box-shadow: 0 0 5px #CCC;
 		box-sizing: border-box;
 		-moz-box-sizing: border-box;
 		-webkit-box-sizing: border-box;
@@ -91,6 +90,10 @@
 		font-size: 0.8em;
 	}
 
+	.share-link {
+		margin: 10px auto 30px auto;
+	}
+
 	@media only screen and (max-width: 720px) {
 	
 	}
@@ -144,6 +147,7 @@
 			<div class="share-button" data-network="whatsapp"><img src="img/icons/whatsapp.svg" class="share-button-icon" /></div>
 		</div>
 		<div>Share this tool and help secure the web.</div>
+		<div class="share-link"><a href="https://samepassword.com">https://samepassword.com</a></div>
 	</div>
 </section>
 
@@ -151,11 +155,13 @@
 	<div class="container">
 		<h3>Stronger Password Security</h3>
 		<p>A recent survey found that 53% of people use the same password for multiple accounts.</p>
-		<p>The issue is that when one account inevitable gets comprimised the attacker has access to all the other accounts that person has. To make things worse some of the biggest sites on the web have had data breaches meaning that millions of email:password combinations are already in the public domain.</p>
+		<p>The issue is that when one account gets comprimised the attacker has access to all the other accounts that person has. To make things worse some of the biggest sites on the web have had data breaches meaning that millions of email:password combinations are already in the public domain.</p>
 		<img src="img/laptop.png" class="responsive-width small-image pull-left" />
 		<p><span class="brand-name">SAME<span class="yellow">PASSWORD</span></span> fixes this by creating a unique password for every website you create an account for. Simply visit this site and enter your email, a pass phrase and the domain name of the site you are setting up an account on. A unique, secure password will be created.</p>
 		<p>At any time in the future you can return to this site and enter the same details to retrieve your password.</p>
-		<p>Passwords are calculated in the browser and are never sent to or stored on the webserver. The code for this website is open-source and the site itself is hosted on <a href="https://github.com/jamesbachini/SamePassword">Github</a>.</p>
+		<p>A one way hashing algorithm is used as part of the password generation function. This means that if one password is discovered the attacker can not find out any other logins details.</p>
+		<h3>Peace Of Mind Passwords</h3>
+		<p>Passwords are calculated in the browser and are never sent to or stored on the web server. The code for this website is open-source and the site itself is hosted on <a href="https://github.com/jamesbachini/SamePassword">Github</a>.</p>
 		<img src="img/mobile.png" class="responsive-width small-image pull-right" />
 		<p>The email field can contain either a username or email address. This in theory should match the account username or password but it can be any alphanumeric phrase</p>
 		<p>The password field should contain a unique pass phrase that you can remember. This could be a common password alongside a pin number for example. The longer the better and don't use "password".</p>
@@ -166,6 +172,7 @@
 	</div>
 </section>
 
+<br><br><br>
 
 <script>
 	document.getElementById('copy-icon').onclick = () => {
