@@ -1,8 +1,10 @@
-//import { utils } from './../core/utils.js';
+import { utils } from './../core/utils.js';
 import { core } from './../core/core.js';
 
 window.vSettings = {
-	brand: 'VanillaHTML',
+	brand: 'SamePassword',
 }
+
+window.utils = utils;
 
 core.init();
