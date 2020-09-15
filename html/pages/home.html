@@ -246,11 +246,11 @@
 	});
 
 	const hash = async (message) => {
-  	const msgUint8 = new TextEncoder().encode(message);
-  	const hashBuffer = await crypto.subtle.digest('SHA-256', msgUint8);
-  	const hashArray = Array.from(new Uint8Array(hashBuffer));
-  	const hash = hashArray.map(b => b.toString(36).padStart(2, '0')).join('');
-  	return hash;
+		const msgUint8 = new TextEncoder().encode(message);
+		const hashBuffer = await crypto.subtle.digest('SHA-256', msgUint8);
+		const hashArray = Array.from(new Uint8Array(hashBuffer));
+		const hash = hashArray.map(b => b.toString(36).padStart(2, '0')).join('');
+		return hash;
 	}
 
 	const createPass = (long) => {
