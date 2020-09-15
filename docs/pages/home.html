@@ -1,16 +1,38 @@
 <style>
+	.background {
+		position: fixed;
+		left: 0px;
+		top: 0px;
+		right: 0px;
+		bottom: 0px;
+		background-image: url('img/white-bkg.jpg');
+		background-size: cover;
+	}
+
 	section {
-		background: #F7F7F7;
+		background: rgba(240, 240, 240, 0.9);
 		border-bottom: 2px solid #EEE;
+		position: relative;
 	}
 	
 	.section-alt {
-		background: #F3F3F3;
+		background: rgba(255, 255, 255, 0.1); 
 	}
 
 	h1 {
 		font-weight: 900;
-		font-size: 18px;
+		font-size: 16px;
+	}
+
+	h3 {
+		font-size: 14px;
+	}
+
+	h4 {
+		max-width: 320px;
+		color: #888;
+		margin: auto;
+		font-size: 0.8em;
 	}
 
 	.yellow {
@@ -65,6 +87,10 @@
 		margin-bottom: -3px;
 	}
 
+	.copy-icon:hover, .save-icon:hover {
+		opacity: 0.7;
+	}
+
 	.green-icon {
 		color: #2b9e31;
 		filter: invert(45%) sepia(75%) saturate(484%) hue-rotate(74deg) brightness(94%) contrast(90%);
@@ -75,6 +101,10 @@
 		display: inline-block;
 		cursor: pointer;
 		opacity: 0.3;
+	}
+
+	.share-button:hover {
+		opacity: 0.5;
 	}
 
 	.additional-checkboxes {
@@ -92,6 +122,11 @@
 
 	.share-link {
 		margin: 10px auto 30px auto;
+		font-size: 1.2em;
+	}
+
+	.share-link:hover {
+		font-weight:bold;
 	}
 
 	@media only screen and (max-width: 720px) {
@@ -100,12 +135,17 @@
 
 </style>
 
+<div class="background"></div>
+
 <section id="generator">
 	<div class="container">
 		<div class="value-proposition">
 			<h1 class="text-center">
-				PASSWORD GENERATOR
+				Use The Same Password For Everything?
 			</h1>
+			<h4 class="text-center">
+				Generate Unique Passwords For Each Account From A Single Password
+			</h4>
 		</div>
 		<div id="generator-container">
 			<div>
@@ -151,7 +191,7 @@
 	</div>
 </section>
 
-<section id="explainer">
+<section id="explainer" class="bkg-white">
 	<div class="container">
 		<h3>Stronger Password Security</h3>
 		<p>A recent survey found that 53% of people use the same password for multiple accounts.</p>
@@ -169,6 +209,18 @@
 		<p>The "save" tickboxes will save your email and password in the browser so you only need to fill them in once. Don't use this on a shared machine.</p>
 		<p>The "Random" tickbox will generate a one off completely random password. This is non-recoverable as it contains random data in the algorithm.</p>
 		<p>The "No Symbols" tickbox will generate a alphanumeric password with no symbols in it.</p>
+	</div>
+</section>
+
+<section id="share" class="section-alt">
+	<div class="container text-center">
+		<h3>Help Spread The Word</h3>
+		<div>
+			<div class="share-button" data-network="twitter"><img src="img/icons/twitter.svg" class="share-button-icon" /></div>
+			<div class="share-button" data-network="facebook"><img src="img/icons/facebook.svg" class="share-button-icon" /></div>
+			<div class="share-button" data-network="whatsapp"><img src="img/icons/whatsapp.svg" class="share-button-icon" /></div>
+		</div>
+		<div class="share-link"><a href="https://samepassword.com">https://samepassword.com</a></div>
 	</div>
 </section>
 
